@@ -1,0 +1,20 @@
+<div class="jumbtron">
+  <h1 style="text-align:center">Chatter</h1>
+  <div class="well" id="chatbox" style="height:250px; border: solid 1px #222222; overflow-y: scroll">
+    <% @messages.each do |message| %>
+      <%= render 'messages/message', message: message %>
+    <% end %>
+  </div>
+  <% if current_user %>
+    <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
+      <div class="group mb-3">
+        <%= f.input :content, label: false, placeholder: "Message #{@chatroom.name}" %>
+        <div class="input-group-append">
+          <%= f.submit 'Send', clas: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p style="text-align:center">You need to be <%= link_to 'Signed in', new_user_session_path %> in order to chat!</p>
+  <% end %>
+</div>
