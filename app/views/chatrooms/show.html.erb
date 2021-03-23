@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 mt-3">
       <h1 style="text-align:center">#<%= @chatroom.name %></h1>
-      <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+      <div id="messages" data-chatroom-id="<%= @chatroom.id %>", style="height:250px; border: solid 1px #222222; overflow-y: scroll">
         <% @chatroom.messages.each do |message| %>
           <%= render 'messages/message', message: message %>
         <% end %>
